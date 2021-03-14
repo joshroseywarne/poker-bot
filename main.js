@@ -4,7 +4,11 @@
 
 // require the discord.js module
 const Discord = require('discord.js');
+//const { count } = require('node:console');
 const dotenv = require('dotenv').config();
+//import Player from "C:/Users/tpraz/GitHub/poker-bot/classes.js"
+const Game = require("./classes.js").Game
+const Player = require("./classes.js").Player
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -23,6 +27,10 @@ client.on('message', message => {
 	message.channel.send("yo");
 
 });
+
+let game = new Game();
+game.deck = game.createDeck()
+console.log(game.deck);
 
 //console.log(process.env.TOKEN);
 // login to Discord 

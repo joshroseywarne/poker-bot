@@ -6,7 +6,7 @@ class Player {
         this.hand = [];
     }
 
-    createHand(deck) {
+    createHand(game) {
         // gives a player a hand
         // decide on how to store
         function randInt(){
@@ -16,9 +16,11 @@ class Player {
             return randomnumber;
         }
         //need to pass a deck object from the Game class to the player class
-        this.hand[0] = deck[randInt];
+        this.hand[0] = game.deck[randInt];
+        delete game.deck[randInt];
         //remove this card from deck selection pool
-        this.hand[1] = deck[randInt];
+        this.hand[1] = game.deck[randInt];
+        delete game.deck[randInt];
         //remove this card from deck selection pool
 
     }
@@ -33,7 +35,7 @@ class Player {
 
 class Game {
     constructor() {
-        this.deck = createDeck();
+        this.deck = {};
     }
 
     createDeck(){
@@ -57,3 +59,6 @@ class Game {
 
     }
 }
+
+
+module.exports = {Game,Player}
