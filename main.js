@@ -28,12 +28,33 @@ client.on('message', message => {
 	if (message.content.startsWith(`${prefix}poker`)){
 		const args = message.content.slice(prefix.length).trim().split(' ');  
 		const command = args.shift().toLowerCase();
-		console.log(args)
-		let game = new Game();
-		game.deck = game.createDeck()
-		message.channel.send(game.deck[0].Suit);
-	}  
 
+		let no_players = parseInt(args[0]);
+		let money = parseInt(args[1]) 
+
+		let game = new Game();
+		game.deck = game.createDeck();
+
+		let players = [];
+		let player_objs = {};
+		let i = 1;
+		while (players.length <= no_players){
+			client.on('message', message => {
+				if (message.content.startsWith('join')){
+					if (!players.includes(message.author.username)){
+						players_objs['player' + i] = eval(window['player' + i] = new Player(message.author.username,money))
+						players.push(message.author.username)
+						i++;
+					}
+				}
+			});
+		}
+		console.log(players)
+	}  
+	if (message.content.startsWith(`${prefix}hands`)){
+		message.channel.send("Here are the poker hands", {files: ["poker-hand-rankings-mobile.png"]});
+	}
+	
 });
 
 // let game = new Game();
