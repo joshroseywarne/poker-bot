@@ -4,7 +4,7 @@
 
 // require the discord.js module
 const Discord = require('discord.js');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -17,16 +17,14 @@ client.once('ready', () => {
 
 client.on('message', message => {
 
-message.channel.send("i eat ass");
+//prevent feedback loops
+if (message.author.bot) return;    
 
-
-
-
-
+message.channel.send("yo");
 
 
 });
 
 console.log(process.env.TOKEN);
-// login to Discord with your app's token, run it with the 
+// login to Discord 
 client.login(process.env.TOKEN);
