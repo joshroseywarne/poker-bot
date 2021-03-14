@@ -24,6 +24,7 @@ client.on('!Poker', message => {
 	//prevent feedback loops
 	if (message.author.bot) return;    
 	let game = new Game();
+	console.log('success')
 	game.deck = game.createDeck()
 	message.channel.send(game.deck[0].Suit);
 
