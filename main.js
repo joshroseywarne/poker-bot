@@ -36,15 +36,13 @@ client.on('message', message => {
 		game.deck = game.createDeck();
 
 		let players = [];
-		let player_objs = {};
-		let i = 1;
 		while (players.length <= no_players){
 			client.on('message', message => {
+				console.log(message.content)
 				if (message.content.startsWith('join')){
 					if (!players.includes(message.author.username)){
-						players_objs['player' + i] = eval(window['player' + i] = new Player(message.author.username,money))
-						players.push(message.author.username)
-						i++;
+						let newPlayer = new Player(message.author.username,money);
+						players.push(newPlayer);
 					}
 				}
 			});
