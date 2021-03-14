@@ -19,18 +19,19 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
-client.on('message', message => {
+client.on('!Poker', message => {
 
 	//prevent feedback loops
 	if (message.author.bot) return;    
-
-	message.channel.send("yo");
+	let game = new Game();
+	game.deck = game.createDeck()
+	message.channel.send(game.deck[0].Suit);
 
 });
 
-let game = new Game();
-game.deck = game.createDeck()
-console.log(game.deck);
+// let game = new Game();
+// game.deck = game.createDeck()
+// console.log(game.deck);
 
 //console.log(process.env.TOKEN);
 // login to Discord 
