@@ -17,14 +17,13 @@ client.once('ready', () => {
 
 client.on('message', message => {
 
-//prevent feedback loops
-if (message.author.bot) return;    
+	//prevent feedback loops
+	if (message.author.bot) return;    
 
-message.channel.send("yo");
-
+	message.channel.send("yo");
 
 });
 
-console.log(process.env.TOKEN);
+//console.log(process.env.TOKEN);
 // login to Discord 
 client.login(process.env.TOKEN);
