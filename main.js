@@ -19,13 +19,17 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
+let prefix = '!';
+
 client.on('message', message => {
-	console.log(message)
 	//prevent feedback loops
-	if (message.author.bot) return;  
-	if (message.content.includes('!poker')){
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+	if (message.content.startsWith(`${prefix}poker`)){
+		const args = message.content.slice(prefix.length).trim().split(' ');  
+		const command = args.shift().toLowerCase();
+		console.log(args)
 		let game = new Game();
-		console.log('success')
 		game.deck = game.createDeck()
 		message.channel.send(game.deck[0].Suit);
 	}  
