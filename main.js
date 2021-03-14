@@ -17,7 +17,10 @@ client.once('ready', () => {
 
 client.on('message', message => {
 
-message.channel.send("i eat ass");
+//prevent feedback loops
+if (message.author.bot) return;    
+
+message.channel.send("yo");
 
 
 
