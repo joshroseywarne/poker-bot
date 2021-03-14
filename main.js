@@ -19,14 +19,16 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
-client.on('!Poker', message => {
-
+client.on('message', message => {
+	console.log(message)
 	//prevent feedback loops
-	if (message.author.bot) return;    
-	let game = new Game();
-	console.log('success')
-	game.deck = game.createDeck()
-	message.channel.send(game.deck[0].Suit);
+	if (message.author.bot) return;  
+	if (message.content.includes('!poker')){
+		let game = new Game();
+		console.log('success')
+		game.deck = game.createDeck()
+		message.channel.send(game.deck[0].Suit);
+	}  
 
 });
 
